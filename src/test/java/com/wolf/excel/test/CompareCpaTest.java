@@ -33,22 +33,23 @@ public class CompareCpaTest {
           bufferedReader = new BufferedReader(fileReader);
             String lineStr = null;
             cpaCompareInfoList = new HashMap<String, CpaCompareInfo>();
+            int i = 0;
             while ((lineStr = bufferedReader.readLine()) != null){
                 String[] cpastrs = lineStr.split("\\|\\|");
                 CpaCompareInfo cpaCompareInfo = new CpaCompareInfo();
                 if(cpastrs.length > 0){
+                        i++;
                         cpaCompareInfo.setMacAddress(cpastrs[0]);
                         if(cpastrs.length >1)
                         cpaCompareInfo.setVersion(cpastrs[1]);
                         if(cpastrs.length > 2){
                             cpaCompareInfo.setDateStr(cpastrs[2]);
                         }
-                        if("2".equals(cpaCompareInfo.getVersion().substring(0,1))){
-                            cpaCompareInfoList.put(cpaCompareInfo.getMacAddress(),cpaCompareInfo);
+                        if("2".equals(cpaCompareInfo.getVersion().substring(0,1)) && !"null".equals(cpaCompareInfo.getMacAddress())){
+                            cpaCompareInfoList.put(cpaCompareInfo.getMacAddress(), cpaCompareInfo);
                         }
                 }
             }
-
         }catch (Exception e){
             e.printStackTrace();
         }finally {
@@ -63,6 +64,52 @@ public class CompareCpaTest {
 
     }
 
+
+    private List<CpaCompareInfo> compareCpaInfoResultList(){
+        FileReader fileReader = null;
+        BufferedReader bufferedReader = null;
+        List<CpaCompareInfo> cpaCompareInfoList = null;
+        try{
+            fileReader = new FileReader(new File(cpaPath2));
+            bufferedReader = new BufferedReader(fileReader);
+            String lineStr = null;
+            cpaCompareInfoList = new ArrayList<CpaCompareInfo>();
+            int i = 0;
+            while ((lineStr = bufferedReader.readLine()) != null){
+                String[] cpastrs = lineStr.split("\\|\\|");
+
+                CpaCompareInfo cpaCompareInfo = new CpaCompareInfo();
+                if(cpastrs.length > 0){
+                    i++;
+                    cpaCompareInfo.setMacAddress(cpastrs[0]);
+                    if(cpastrs.length >1)
+                        cpaCompareInfo.setVersion(cpastrs[1]);
+                    if(cpastrs.length > 2){
+                        cpaCompareInfo.setDateStr(cpastrs[2]);
+                    }
+//                    if("2".equals(cpaCompareInfo.getVersion().substring(0,1))){
+//                        cpaCompareInfoList.put(cpaCompareInfo.getMacAddress(),cpaCompareInfo);
+//                    }
+                    if(!"null".equals(cpaCompareInfo.getMacAddress()) && cpaCompareInfo.getMacAddress() !=null){
+                        cpaCompareInfoList.add(cpaCompareInfo);
+                    }
+                }
+            }
+            System.out.println("---"+ i);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            try{
+                bufferedReader.close();
+                fileReader.close();
+            }catch (IOException ie){
+                ie.printStackTrace();
+            }
+        }
+        return cpaCompareInfoList;
+
+    }
     @Test
     public void readXLSX2007Test() {
         Map<String,CpaCompareInfo> cpaCompareInfos1 = readFromXLSX2007(cpaPath1);
@@ -101,6 +148,7 @@ public class CompareCpaTest {
             for(int j=0;j<sheets;j++){
                 XSSFSheet sheet = workbook2007.getSheetAt(j);// 取出第一个工作表，索引是0
                 // 开始循环遍历行，表头不处理，从1开始
+                System.out.println("lastRowNum:"+sheet.getLastRowNum());
                 for (int i = 1; i <= sheet.getLastRowNum(); i++) {
                     CpaCompareInfo cpaCompareInfo = new CpaCompareInfo();
                     XSSFRow row = sheet.getRow(i);// 获取行对象
