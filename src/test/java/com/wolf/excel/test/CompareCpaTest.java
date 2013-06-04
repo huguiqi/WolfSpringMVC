@@ -21,8 +21,8 @@ import java.util.*;
  */
 public class CompareCpaTest {
 
-    private static String cpaPath1 = "/Users/sam/Desktop/锦江旅行家mac list 20130524-20130526.xlsx";
-    private static String cpaPath2 = "/Users/sam/Desktop/2013-05-24--26副本.txt";
+    private static String cpaPath1 = "/Users/sam/Desktop/excel22.xlsx";
+    private static String cpaPath2 = "/Users/sam/Desktop/2013-05-01.txt";
 
     private Map<String,CpaCompareInfo> compareCpaInfoResult(){
         FileReader fileReader = null;
@@ -87,15 +87,11 @@ public class CompareCpaTest {
                     if(cpastrs.length > 2){
                         cpaCompareInfo.setDateStr(cpastrs[2]);
                     }
-//                    if("2".equals(cpaCompareInfo.getVersion().substring(0,1))){
-//                        cpaCompareInfoList.put(cpaCompareInfo.getMacAddress(),cpaCompareInfo);
-//                    }
-                    if(!"null".equals(cpaCompareInfo.getMacAddress()) && cpaCompareInfo.getMacAddress() !=null){
+                    if(!"null".equals(cpaCompareInfo.getMacAddress()) && cpaCompareInfo.getMacAddress() !=null && "2".equals(cpaCompareInfo.getVersion().substring(0,1))){
                         cpaCompareInfoList.add(cpaCompareInfo);
                     }
                 }
             }
-            System.out.println("---"+ i);
 
         }catch (Exception e){
             e.printStackTrace();
@@ -114,6 +110,7 @@ public class CompareCpaTest {
     public void readXLSX2007Test() {
         Map<String,CpaCompareInfo> cpaCompareInfos1 = readFromXLSX2007(cpaPath1);
         Map<String,CpaCompareInfo> cpaCompareInfos2 = compareCpaInfoResult();
+        List<CpaCompareInfo> cpaCompareInfos = compareCpaInfoResultList();
         List<CpaCompareInfo> listCpas = new ArrayList<CpaCompareInfo>();
 
         for(CpaCompareInfo cpaCompareInfo : cpaCompareInfos1.values()){
@@ -128,9 +125,13 @@ public class CompareCpaTest {
             listCpas.add(cpaCompareInfo);
         }
 
-       for(CpaCompareInfo cpaCompareInfo :listCpas){
-           System.out.println("  "+cpaCompareInfo.getMacAddress() +"  "+cpaCompareInfo.getDesc() +" "+cpaCompareInfo.getVersion() +"  " + cpaCompareInfo.getDateStr());
-       }
+//       for(CpaCompareInfo cpaCompareInfo :listCpas){
+//           System.out.println("  "+cpaCompareInfo.getMacAddress() +"  "+cpaCompareInfo.getDesc() +" "+cpaCompareInfo.getVersion() +"  " + cpaCompareInfo.getDateStr());
+//       }
+        System.out.println("aaa nums:"+cpaCompareInfos2.size());
+        for(CpaCompareInfo cpaCompareInfo:cpaCompareInfos2.values()){
+            System.out.println(" device cpa : "+cpaCompareInfo.getMacAddress() +"  "+cpaCompareInfo.getDesc() +" "+cpaCompareInfo.getVersion() +"  " + cpaCompareInfo.getDateStr());
+        }
 
     }
 
@@ -156,7 +157,8 @@ public class CompareCpaTest {
                         continue;
                     }
                     XSSFCell cell = row.getCell(0);
-                    String macAddress = cell.getStringCellValue().replaceAll(":", "");
+//                    String macAddress = cell.getStringCellValue().replaceAll(":", "");
+                    String macAddress = cell.getStringCellValue();
                     cpaCompareInfo.setMacAddress(macAddress);
                     compareInfos.put(macAddress,cpaCompareInfo);
                 }
