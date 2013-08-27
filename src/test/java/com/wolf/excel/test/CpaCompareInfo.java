@@ -9,6 +9,7 @@ package com.wolf.excel.test;
  */
 public class CpaCompareInfo {
 
+    private String deviceToken;
     private String macAddress;
     private String version;
     private String desc;
@@ -46,10 +47,19 @@ public class CpaCompareInfo {
         this.dateStr = dateStr;
     }
 
+    public String getDeviceToken() {
+        return deviceToken;
+    }
+
+    public void setDeviceToken(String deviceToken) {
+        this.deviceToken = deviceToken;
+    }
+
     @Override
     public String toString() {
         return "CpaCompareInfo{" +
-                "macAddress='" + macAddress + '\'' +
+                "deviceToken='" + deviceToken + '\'' +
+                ", macAddress='" + macAddress + '\'' +
                 ", version='" + version + '\'' +
                 ", desc='" + desc + '\'' +
                 ", dateStr='" + dateStr + '\'' +
