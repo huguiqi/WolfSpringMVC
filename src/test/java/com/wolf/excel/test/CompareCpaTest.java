@@ -21,9 +21,9 @@ import java.util.*;
  */
 public class CompareCpaTest {
 
-    private static String cpaPath1 = "/Users/huguiqi/Desktop/cpa_compare/锦江旅行家mac list 20130819-20130825.xlsx";
-    private static String cpaPath2 = "/Users/huguiqi/Desktop/cpa_compare/compare_2013_8_27.txt";
-    private static String outFilePath = "/Users/huguiqi/Desktop/cpa_compare/compare_all.txt";
+    private static String cpaPath1 = "/Users/huguiqi/Desktop/cpa_compare/锦江旅行家mac list 20130826-20130901.xlsx";
+    private static String cpaPath2 = "/Users/huguiqi/Desktop/cpa_compare/compare_2013_9_04.txt";
+    private static String outFilePath = "/Users/huguiqi/Desktop/cpa_compare/compare_result.txt";
 
     private Map<String,CpaCompareInfo> compareCpaInfoResult(){
         FileReader fileReader = null;
