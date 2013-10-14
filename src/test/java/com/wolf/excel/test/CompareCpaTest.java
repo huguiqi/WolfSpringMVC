@@ -21,8 +21,8 @@ import java.util.*;
  */
 public class CompareCpaTest {
 
-    private static String cpaPath1 = "/Users/huguiqi/Desktop/cpa_compare/锦江旅行家mac list 20130826-20130901.xlsx";
-    private static String cpaPath2 = "/Users/huguiqi/Desktop/cpa_compare/compare_2013_9_04.txt";
+    private static String cpaPath1 = "/Users/huguiqi/Desktop/cpa_compare/2013-10-(12-13).xlsx";
+    private static String cpaPath2 = "/Users/huguiqi/Desktop/cpa_compare/compare_2013_10_12.txt";
     private static String outFilePath = "/Users/huguiqi/Desktop/cpa_compare/compare_result.txt";
 
     private Map<String,CpaCompareInfo> compareCpaInfoResult(){
@@ -50,17 +50,17 @@ public class CompareCpaTest {
                         if(cpastrs.length >3){
                             cpaCompareInfo.setDateStr(cpastrs[3]);
                         }
-//                        if("2.2.2".equals(cpaCompareInfo.getVersion())&& !"null".equals(cpaCompareInfo.getMacAddress())){
-//                            cpaCompareInfoList.put(cpaCompareInfo.getMacAddress(), cpaCompareInfo);
-//                        }
-                    String v = cpaCompareInfo.getVersion().substring(0,3);
-                    System.out.println("-----v:"+v);
-                    if("2.2".equals(v)){
-                        int v2 = Integer.valueOf(cpaCompareInfo.getVersion().substring(4)).intValue() ;
-                        if (v2>=2 && !"null".equals(cpaCompareInfo.getMacAddress())) {
+                        if("2.2.4".equals(cpaCompareInfo.getVersion())&& !"null".equals(cpaCompareInfo.getMacAddress())){
                             cpaCompareInfoList.put(cpaCompareInfo.getMacAddress(), cpaCompareInfo);
                         }
-                    }
+//                    String v = cpaCompareInfo.getVersion().substring(0,3);
+//                    System.out.println("-----v:"+v);
+//                    if("2.2".equals(v)){
+//                        int v2 = Integer.valueOf(cpaCompareInfo.getVersion().substring(4)).intValue() ;
+//                        if (v2>=2 && !"null".equals(cpaCompareInfo.getMacAddress())) {
+//                            cpaCompareInfoList.put(cpaCompareInfo.getMacAddress(), cpaCompareInfo);
+//                        }
+//                    }
 
                 }
             }

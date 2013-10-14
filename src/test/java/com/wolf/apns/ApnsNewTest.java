@@ -27,46 +27,21 @@ public class ApnsNewTest {
     private Student student;
 
 //    private static String certificatePath = "/Users/huguiqi/Public/workspace/github/WolfSpringMVC/src/main/resources/com/wolf/apns/Certificates-starHotel-dev.p12";
-    private static String certificatePath = "com/wolf/apns/Certificates-starHotel-dev.p12";
+//    private static String certificatePath = "com/wolf/apns/Certificates-starHotel-dev.p12";
+    private static String certificatePath = "com/wolf/apns/Certificates-old-dev.p12";
 
 
-//    private List<Device> buildDeviceAndValidToken() {
-//
-//        List<Device> deviceList = new ArrayList<Device>();
-//        for (int i = 0; i < 10; i++) {
-//            Device device = null;
-//            boolean isCorrect = true;
-//            try {
-//                if (i == 3) {
-//                    device = new BasicDevice("android:aaaaa" + i, true);
-//                } else {
-//                    device = new BasicDevice("35c81f1c9de63aa5c55d50022542e737bc54e68a9ded01264f46d2e4dc9db2d" + i, true);
-//                }
-//            } catch (InvalidDeviceTokenFormatException ie) {
-//                logger.error("deviceToken format error!! deviceToken", ie);
-//                isCorrect = false;
-//            }
-//
-//            if (isCorrect) {
-//                deviceList.add(device);
-//            }
-//
-//        }
-//        return deviceList;
-//    }
+    private List<Device> buildDeviceAndValidToken() {
 
-    private List<String> buildDeviceAndValidToken() {
-
-        List<String> deviceList = new ArrayList<String>();
+        List<Device> deviceList = new ArrayList<Device>();
         for (int i = 0; i < 10; i++) {
+            Device device = null;
             boolean isCorrect = true;
-            String token = "35c81f1c9de63aa5c55d50022542e737bc54e68a9ded01264f46d2e4dc9db2f" + i;
             try {
                 if (i == 3) {
-                    token = "android:aaaaa" + i;
-                    BasicDevice.validateTokenFormat(token);
+                    device = new BasicDevice("android:aaaaa" + i, true);
                 } else {
-                    BasicDevice.validateTokenFormat(token);
+                    device = new BasicDevice("35c81f1c9de63aa5c55d50022542e737bc54e68a9ded01264f46d2e4dc9db2d" + i, true);
                 }
             } catch (InvalidDeviceTokenFormatException ie) {
                 logger.error("deviceToken format error!! deviceToken", ie);
@@ -74,12 +49,38 @@ public class ApnsNewTest {
             }
 
             if (isCorrect) {
-                deviceList.add(token);
+                deviceList.add(device);
             }
 
         }
         return deviceList;
     }
+
+//    private List<String> buildDeviceAndValidToken() {
+//
+//        List<String> deviceList = new ArrayList<String>();
+//        for (int i = 0; i < 10; i++) {
+//            boolean isCorrect = true;
+//            String token = "35c81f1c9de63aa5c55d50022542e737bc54e68a9ded01264f46d2e4dc9db2b" + i;
+//            try {
+//                if (i == 3) {
+//                    token = "android:aaaaa" + i;
+//                    BasicDevice.validateTokenFormat(token);
+//                } else {
+//                    BasicDevice.validateTokenFormat(token);
+//                }
+//            } catch (InvalidDeviceTokenFormatException ie) {
+//                logger.error("deviceToken format error!! deviceToken", ie);
+//                isCorrect = false;
+//            }
+//
+//            if (isCorrect) {
+//                deviceList.add(token);
+//            }
+//
+//        }
+//        return deviceList;
+//    }
 
 
     private void sendMsgToDevice(List<Device> deviceList, PushNotificationManager pushManager) throws Exception {
@@ -148,7 +149,8 @@ public class ApnsNewTest {
 
     @Test
     public void pushTest() throws Exception {
-//        Push.alert("Hello World!This is test!!", certificatePath, "123456", false, "35c81f1c9de63aa5c55d50022542e737bc54e68a9ded01264f46d2e4dc9db2d4");
+//        35c81f1c9de63aa5c55d50022542e737bc54e68a9ded01264f46d2e4dc9db2d4
+//        Push.alert("Hello World!This is test!!", this.getClass().getClassLoader().getResourceAsStream(certificatePath), "123456", false, "35c81f1c9de63aa5c55d50022542e737bc54e68a9ded01264f46d2e4dc9db2d4");
         PushNotificationPayload payLoad = new PushNotificationPayload();
         payLoad.addAlert("这只是个测试！！！");
         payLoad.addBadge(1);
