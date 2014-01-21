@@ -28,7 +28,7 @@ public class ApnsNewTest {
 
 //    private static String certificatePath = "/Users/huguiqi/Public/workspace/github/WolfSpringMVC/src/main/resources/com/wolf/apns/Certificates-starHotel-dev.p12";
 //    private static String certificatePath = "com/wolf/apns/Certificates-starHotel-dev.p12";
-    private static String certificatePath = "com/wolf/apns/Certificates-old-dev.p12";
+    private static String certificatePath = "com/wolf/apns/Certificates-new-dev.p12";
 
 
     private List<Device> buildDeviceAndValidToken() {
@@ -39,7 +39,7 @@ public class ApnsNewTest {
             boolean isCorrect = true;
             try {
                 if (i == 3) {
-                    device = new BasicDevice("android:aaaaa" + i, true);
+                    device = new BasicDevice("79c1e433bcfaad97866a26327e5151d8acdc29e29729590f7bdb37dd2e3965ef", true);
                 } else {
                     device = new BasicDevice("35c81f1c9de63aa5c55d50022542e737bc54e68a9ded01264f46d2e4dc9db2d" + i, true);
                 }
@@ -89,14 +89,14 @@ public class ApnsNewTest {
         payLoad.addBadge(1);
         payLoad.addSound("default");
         payLoad.addCustomDictionary("msgType", "msg");
-        PushedNotifications notifications = pushManager.sendNotifications(payLoad, deviceList);
-//        Device device = new BasicDevice("35c81f1c9de63aa5c55d50022542e737bc54e68a9ded01264f46d2e4dc9db2d4");
-//        PushedNotification notification =  pushManager.sendNotification(device,payLoad,true);
+//        PushedNotifications notifications = pushManager.sendNotifications(payLoad, deviceList);
+        Device device = new BasicDevice("79c1e433bcfaad97866a26327e5151d8acdc29e29729590f7bdb37dd2e3965ef");
+        PushedNotification notification =  pushManager.sendNotification(device,payLoad,true);
 
-        List<PushedNotification> failedNotifications = PushedNotification.findFailedNotifications(notifications);
-        List<PushedNotification> successfulNotifications = PushedNotification.findSuccessfulNotifications(notifications);
-        int failed = failedNotifications.size();
-        int successful = successfulNotifications.size();
+//        List<PushedNotification> failedNotifications = PushedNotification.findFailedNotifications(notifications);
+//        List<PushedNotification> successfulNotifications = PushedNotification.findSuccessfulNotifications(notifications);
+//        int failed = failedNotifications.size();
+//        int successful = successfulNotifications.size();
     }
 
 //    @Test
