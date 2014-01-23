@@ -68,6 +68,18 @@
           <element id="library" level="project" name="Maven: dom4j:dom4j:1.6.1" />
           <element id="library" level="project" name="Maven: xml-apis:xml-apis:1.0.b2" />
           <element id="library" level="project" name="Maven: org.apache.poi:poi-scratchpad:3.8-beta4" />
+          <element id="library" level="project" name="Maven: javapns:javapns-jdk16:2.2" />
+          <element id="library" level="project" name="Maven: bcprov:bcprov-jdk15-146:1.4.6" />
+          <element id="library" level="project" name="Maven: com.googlecode:kryo:1.04" />
+          <element id="library" level="project" name="Maven: asm:asm:3.2" />
+          <element id="library" level="project" name="Maven: com.googlecode:reflectasm:1.01" />
+          <element id="library" level="project" name="Maven: com.googlecode:minlog:1.2" />
+          <element id="library" level="project" name="Maven: com.google.guava:guava:13.0.1" />
+          <element id="library" level="project" name="Maven: commons-io:commons-io:2.4" />
+          <element id="library" level="project" name="Maven: net.sf.json-lib:json-lib:jdk15:2.2.3" />
+          <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.7.0" />
+          <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2" />
+          <element id="library" level="project" name="Maven: net.sf.ezmorph:ezmorph:1.0.6" />
         </element>
       </element>
     </root>

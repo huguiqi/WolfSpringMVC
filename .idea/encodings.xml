@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/../../branch_AF003/M.F003.T/dto" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../branch_AF003/M.F003.T/dto/cms" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../branch_AF003/M.F003.T/dto/flight" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../branch_AF003/M.F003.T/dto/member" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../branch_AF003/M.F003.T/dto/travel" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
   </component>
 </project>
