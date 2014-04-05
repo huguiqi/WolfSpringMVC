@@ -78,20 +78,17 @@
 		如果没有contextConfigLocation参数，则在/WEB_INF下去找springMVC-servlet.xml文件
 	-->
 	<servlet>
-		<servlet-name>springMVC</servlet-name>
+		<servlet-name>WolfSpringMVC</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<!-- 
-			<param-value></param-value>
-			-->
 			<param-value>/WEB-INF/conf/spring/springMVC-config.xml</param-value>
 		</init-param>
 		<!-- 值大于等于0表示容器启动应用时候加载该servlet，数值越小优先级越高 -->
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>springMVC</servlet-name>
+		<servlet-name>WolfSpringMVC</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 </web-app>

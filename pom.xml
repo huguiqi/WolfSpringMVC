@@ -14,6 +14,8 @@
         <org.springframework.version>3.0.5.RELEASE</org.springframework.version>
         <org.springsecurity-version>3.0.5.RELEASE</org.springsecurity-version>
         <org.slf4j.version>1.6.1</org.slf4j.version>
+        <project.contextPath>WolfSpringMVC</project.contextPath>
+        <webapps_dir>${basedir}/target</webapps_dir>
     </properties>
     
     <distributionManagement>
@@ -29,9 +31,9 @@
           <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>maven-jetty-plugin</artifactId>
-                <version>6.1.16</version>
+                <version>6.1.15</version>
                 <configuration>
-                        <contextPath>/</contextPath>
+                        <contextPath>/${project.contextPath}</contextPath>
                         <reload>automatic</reload>
                         <scanIntervalSeconds>10</scanIntervalSeconds>
                         <stopKey>foo</stopKey>
@@ -66,7 +68,29 @@
                         </execution>
                 </executions>
           </plugin>
-
+          <plugin>
+              <artifactId>maven-antrun-plugin</artifactId>
+              <executions>
+                  <execution>
+                      <id>deploy</id>
+                      <phase>install</phase>
+                      <goals>
+                          <goal>
+                              run
+                          </goal>
+                      </goals>
+                      <configuration>
+                          <tasks>
+                              <echo>deploy ${project.contextPath} war</echo>
+                              <copy file="target/${project.contextPath}-mybatis-${project.version}.war"
+                                    tofile="${webapps_dir}/war/${project.contextPath}.war"/>
+                              <!--<copy file="target/classes/${jje.module.contextPath}.properties"-->
+                                    <!--tofile="${webapps_dir}/config/${jje.module.contextPath}.properties"/>-->
+                          </tasks>
+                      </configuration>
+                  </execution>
+              </executions>
+          </plugin>
      <plugin>
      <groupId>org.mortbay.jetty</groupId>
      <artifactId>maven-jetty-jspc-plugin</artifactId>
@@ -79,6 +103,7 @@
                 <configuration>
                     <encoding>UTF-8</encoding>
                     <outputDirectory/>
+                    <overwrite>true</overwrite>
                 </configuration>
             </plugin>
             <plugin>
@@ -96,53 +121,54 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
             </plugin>
+
       </plugins>
   </build>
     
-    <repositories>
-        <repository>
-            <id>archiva.default</id>
-            <url>http://repository.sonatype.org/</url>
-        </repository>
-		 <repository>
-            <id>archiva.2</id>
-            <url> http://www.mvnbrowser.com/</url>
-        </repository>
-		<repository>
-            <id>archiva.3</id>
-            <url>http://www.mvnrepository.com/</url>
-        </repository>
-		<repository>
-            <id>archiva.4</id>
-            <url>http://www.jarvana.com/</url>
-        </repository>
-		<repository>
-            <id>archiva.5</id>
-            <url>http://repository.jboss.com/maven2/</url>
-        </repository>
-        <repository>
-            <id>archiva.6</id>
-            <url>http://mirrors.ibiblio.org/pub/mirrors/maven2/org/acegisecurity/</url>
-        </repository>
-        <repository>
-            <id>archiva.7</id>
-            <url> http://repository.codehaus.org/</url>
-        </repository>
-        <repository>
-           <id>releases</id>
-           <name>Releases</name>
-           <url>https://oss.sonatype.org/content/repositories/releases</url>
-         </repository>
-          <repository>
-           <id>lucene-solr-jenkins-branch_3x</id>
-           <name>Lucene/Solr Jenkins branch_3x</name>
-           <url>https://builds.apache.org/job/Lucene-Solr-Maven-3.x/lastSuccessfulBuild/artifact/maven_artifacts</url>
-           <layout>default</layout>
-           <snapshots>
-             <enabled>true</enabled>
-           </snapshots>
-         </repository>
-        </repositories>
+    <!--<repositories>-->
+        <!--<repository>-->
+            <!--<id>archiva.default</id>-->
+            <!--<url>http://repository.sonatype.org/</url>-->
+        <!--</repository>-->
+		 <!--<repository>-->
+            <!--<id>archiva.2</id>-->
+            <!--<url> http://www.mvnbrowser.com/</url>-->
+        <!--</repository>-->
+		<!--<repository>-->
+            <!--<id>archiva.3</id>-->
+            <!--<url>http://www.mvnrepository.com/</url>-->
+        <!--</repository>-->
+		<!--<repository>-->
+            <!--<id>archiva.4</id>-->
+            <!--<url>http://www.jarvana.com/</url>-->
+        <!--</repository>-->
+		<!--<repository>-->
+            <!--<id>archiva.5</id>-->
+            <!--<url>http://repository.jboss.com/maven2/</url>-->
+        <!--</repository>-->
+        <!--<repository>-->
+            <!--<id>archiva.6</id>-->
+            <!--<url>http://mirrors.ibiblio.org/pub/mirrors/maven2/org/acegisecurity/</url>-->
+        <!--</repository>-->
+        <!--<repository>-->
+            <!--<id>archiva.7</id>-->
+            <!--<url> http://repository.codehaus.org/</url>-->
+        <!--</repository>-->
+        <!--<repository>-->
+           <!--<id>releases</id>-->
+           <!--<name>Releases</name>-->
+           <!--<url>https://oss.sonatype.org/content/repositories/releases</url>-->
+         <!--</repository>-->
+          <!--<repository>-->
+           <!--<id>lucene-solr-jenkins-branch_3x</id>-->
+           <!--<name>Lucene/Solr Jenkins branch_3x</name>-->
+           <!--<url>https://builds.apache.org/job/Lucene-Solr-Maven-3.x/lastSuccessfulBuild/artifact/maven_artifacts</url>-->
+           <!--<layout>default</layout>-->
+           <!--<snapshots>-->
+             <!--<enabled>true</enabled>-->
+           <!--</snapshots>-->
+         <!--</repository>-->
+        <!--</repositories>-->
 
     <dependencies>
         <!-- commons -->

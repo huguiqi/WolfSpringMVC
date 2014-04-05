@@ -19,6 +19,7 @@ import java.util.*;
  * Time: 下午10:54
  * To change this template use File | Settings | File Templates.
  */
+@Ignore
 public class CompareCpaTest {
 
     private static String cpaPath1 = "/Users/huguiqi/Desktop/cpa_compare/2013-10-(12-13).xlsx";
