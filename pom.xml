@@ -125,27 +125,24 @@
       </plugins>
   </build>
     
-    <!--<repositories>-->
-        <!--<repository>-->
-            <!--<id>archiva.default</id>-->
-            <!--<url>http://repository.sonatype.org/</url>-->
-        <!--</repository>-->
-		 <!--<repository>-->
-            <!--<id>archiva.2</id>-->
-            <!--<url> http://www.mvnbrowser.com/</url>-->
-        <!--</repository>-->
-		<!--<repository>-->
-            <!--<id>archiva.3</id>-->
-            <!--<url>http://www.mvnrepository.com/</url>-->
-        <!--</repository>-->
-		<!--<repository>-->
-            <!--<id>archiva.4</id>-->
-            <!--<url>http://www.jarvana.com/</url>-->
-        <!--</repository>-->
-		<!--<repository>-->
-            <!--<id>archiva.5</id>-->
-            <!--<url>http://repository.jboss.com/maven2/</url>-->
-        <!--</repository>-->
+    <repositories>
+        <repository>
+            <id>alimaven</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+        </repository>
+        <repository>
+            <id>archiva.default</id>
+            <url>http://repository.sonatype.org/</url>
+        </repository>
+
+		<repository>
+            <id>archiva.3</id>
+            <url>http://www.mvnrepository.com/</url>
+        </repository>
+		<repository>
+            <id>archiva.5</id>
+            <url>http://repository.jboss.com/maven2/</url>
+        </repository>
         <!--<repository>-->
             <!--<id>archiva.6</id>-->
             <!--<url>http://mirrors.ibiblio.org/pub/mirrors/maven2/org/acegisecurity/</url>-->
@@ -154,21 +151,21 @@
             <!--<id>archiva.7</id>-->
             <!--<url> http://repository.codehaus.org/</url>-->
         <!--</repository>-->
-        <!--<repository>-->
-           <!--<id>releases</id>-->
-           <!--<name>Releases</name>-->
-           <!--<url>https://oss.sonatype.org/content/repositories/releases</url>-->
-         <!--</repository>-->
-          <!--<repository>-->
-           <!--<id>lucene-solr-jenkins-branch_3x</id>-->
-           <!--<name>Lucene/Solr Jenkins branch_3x</name>-->
-           <!--<url>https://builds.apache.org/job/Lucene-Solr-Maven-3.x/lastSuccessfulBuild/artifact/maven_artifacts</url>-->
-           <!--<layout>default</layout>-->
-           <!--<snapshots>-->
-             <!--<enabled>true</enabled>-->
-           <!--</snapshots>-->
-         <!--</repository>-->
-        <!--</repositories>-->
+        <repository>
+           <id>releases</id>
+           <name>Releases</name>
+           <url>https://oss.sonatype.org/content/repositories/releases</url>
+         </repository>
+          <repository>
+           <id>lucene-solr-jenkins-branch_3x</id>
+           <name>Lucene/Solr Jenkins branch_3x</name>
+           <url>https://builds.apache.org/job/Lucene-Solr-Maven-3.x/lastSuccessfulBuild/artifact/maven_artifacts</url>
+           <layout>default</layout>
+           <snapshots>
+             <enabled>true</enabled>
+           </snapshots>
+         </repository>
+        </repositories>
 
     <dependencies>
         <!-- commons -->
@@ -432,20 +429,20 @@
             <version>1.6.1</version>
         </dependency>
 
-        <dependency>
-            <groupId>javapns</groupId>
-            <artifactId>javapns-jdk16</artifactId>
-            <version>2.2</version>
-            <type>jar</type>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>bcprov</groupId>
-            <artifactId>bcprov-jdk15-146</artifactId>
-            <version>1.4.6</version>
-            <type>jar</type>
-            <scope>compile</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>javapns</groupId>-->
+            <!--<artifactId>javapns-jdk16</artifactId>-->
+            <!--<version>2.2</version>-->
+            <!--<type>jar</type>-->
+            <!--<scope>compile</scope>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>bcprov</groupId>-->
+            <!--<artifactId>bcprov-jdk15-146</artifactId>-->
+            <!--<version>1.4.6</version>-->
+            <!--<type>jar</type>-->
+            <!--<scope>compile</scope>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>com.googlecode</groupId>
@@ -492,11 +489,11 @@
         </dependency>
 
         <!-- pinyin4j -->
-        <dependency>
-            <groupId>pinyin4j</groupId>
-            <artifactId>pinyin4j</artifactId>
-            <version>2.5.0</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>pinyin4j</groupId>-->
+            <!--<artifactId>pinyin4j</artifactId>-->
+            <!--<version>2.5.0</version>-->
+        <!--</dependency>-->
 
     </dependencies>
 
