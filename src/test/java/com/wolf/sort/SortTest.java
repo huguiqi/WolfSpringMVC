@@ -75,6 +75,9 @@ public class SortTest {
         System.out.println(binaryTree.searchNode(7));
         System.out.println(binaryTree.preOrder(binaryTree.getRoot()));
 
+        binaryTree.deleteNode(5);
+
+        System.out.println(binaryTree.mid2NodeInOrder(binaryTree.getRoot()));
     }
 
 }

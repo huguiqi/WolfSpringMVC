@@ -110,6 +110,68 @@ public class BinaryTree <T extends Comparable>{
         }
     }
 
+    /**
+     * 删除节点,将删除节点的位置重新补上
+     *
+     * @param data
+     */
+    public void deleteNode(T data) {
+        TreeNode tagNode = searchNode(data);
+
+        if (tagNode == null) {
+            return;
+        }
+        if (tagNode == root) {
+            root = null;
+        }
+        if (tagNode.left == null && tagNode.right == null) {
+            if (tagNode.parent.left == tagNode) {
+                tagNode.parent.left = null;
+            } else if (tagNode.parent.right == tagNode) {
+                tagNode.parent.right = null;
+            }
+            return;
+        }
+        if (tagNode.left == null && tagNode.right != null) {
+            if (tagNode.parent.left == tagNode) {
+                tagNode.parent.left = tagNode.right;
+            } else if (tagNode.parent.right == tagNode) {
+                tagNode.parent.right = tagNode.right;
+            }
+            return;
+        }
+
+        if (tagNode.left != null && tagNode.right == null) {
+            if (tagNode.parent.left == tagNode) {
+                tagNode.parent.left = tagNode.left;
+            } else if (tagNode.parent.right == tagNode) {
+                tagNode.parent.right = tagNode.left;
+            }
+            return;
+        }
+
+        TreeNode leftMaxNode = tagNode.left;
+
+        while (leftMaxNode.right != null) {
+            leftMaxNode = leftMaxNode.right;
+        }
+
+        leftMaxNode.parent.right = null;
+        leftMaxNode.parent = tagNode.parent;
+
+        if (tagNode == tagNode.parent.left) {
+            leftMaxNode.parent.left = leftMaxNode;
+        } else {
+            leftMaxNode.parent.right = leftMaxNode;
+        }
+
+        leftMaxNode.left = tagNode.left;
+        leftMaxNode.right = tagNode.right;
+        tagNode.left = null;
+        tagNode.right = null;
+        tagNode.parent = null;
+    }
+
 
     public void visted(TreeNode subTree) {
         System.out.println("--name:" + subTree.data);
