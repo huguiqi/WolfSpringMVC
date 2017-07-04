@@ -19,8 +19,5 @@ public class DateTest {
                 calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH) - 1);
                 Assert.assertEquals("lastYeaMonth","2013-7",calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1));
 
-        HashMap map = new HashMap();
-        HashSet set = new HashSet();
-
     }
 }
