@@ -1,7 +1,7 @@
 package com.wolf.sort;
 
-import com.wolf.model.algorithm.BinaryTree;
-import com.wolf.model.algorithm.BinaryTreeMock;
+import com.wolf.sort.model.algorithm.BinaryTree;
+import com.wolf.sort.model.algorithm.BinaryTreeMock;
 import org.junit.Test;
 
 import java.util.TreeMap;
@@ -23,6 +23,8 @@ public class SortTest {
         System.out.println(map);
 
         //调用String的compareTo方法进行排序，用的是底层ASCII码值进行比较
+
+//        如果需要特殊的排序操作，可以传入一个比较器给TreeMap
     }
 
     @Test

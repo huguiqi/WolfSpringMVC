@@ -4,14 +4,15 @@
     <html>
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Insert title here</title>
+    <title>common</title>
     </head>
     <body>  
         <h1>Common Page</h1>
         <p>每个人都能访问的页面.</p>
-        <a href="/WolfSpringMVC-mybatis/main/admin"> Go AdminPage </a>
+        <a href="/main/admin"> Go AdminPage </a>
         <br />
-        <a href="/WolfSpringMVC-mybatis/auth/login">退出登录</a>
+
+        <a href="/auth/logout">退出登录</a>
 
     </body>
     </html>

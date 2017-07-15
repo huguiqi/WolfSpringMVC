@@ -1,4 +1,4 @@
-package com.wolf.model.algorithm;
+package com.wolf.sort.model.algorithm;
 
 import java.util.Stack;
 

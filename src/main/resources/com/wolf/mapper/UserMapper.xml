@@ -23,22 +23,22 @@
     </resultMap>
     
 <select id="getUser" resultMap="resultUserMap">
-    select * from  account where id = #{id}
+    select * from  TBL_ACCOUNT where id = #{id}
 </select>
 
 <select id="getUserByUserName" resultMap="resultUserMap">
-    SELECT * FROM  ACCOUNT WHERE USER_NAME = #{userName}
+    SELECT * FROM  TBL_ACCOUNT WHERE USER_NAME = #{userName}
 </select>
 
 <select id="queryAuthsByUserId" parameterType="string" resultMap="resultAuthMap">
-    SELECT a.* FROM T_TBL_AUTH a
-    LEFT JOIN  T_TBL_ROLE_AUTH ra
+    SELECT a.* FROM TBL_AUTH a
+    LEFT JOIN  TBL_ROLE_AUTH ra
     ON  a.CODE = ra.AUTH_CODE
     WHERE ra.ROLE_CODE=#{code}
 </select>
 
   <select id="getRole" parameterType="String"  resultMap="roleMap">
-       SELECT ur.ROLE_CODE  FROM T_TBL_USER_ROLE ur  WHERE ur.USER_CODE = #{userCode}
+       SELECT ur.ROLE_CODE  FROM TBL_USER_ROLE ur  WHERE ur.USER_CODE = #{userCode}
   </select>
     
 </mapper>

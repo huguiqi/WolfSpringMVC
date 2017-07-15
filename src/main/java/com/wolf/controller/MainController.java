@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping("/main")
 public class MainController {
@@ -18,8 +20,9 @@ public class MainController {
      * @return
      */
     @RequestMapping(value = "/common", method = RequestMethod.GET)
-    public String getCommonPage() {
+    public String getCommonPage(HttpServletRequest request) {
         logger.debug("Received request to show common page");
+        System.out.println("sessionId:"+request.getSession().getId());
         return "commonpage";
     }
 

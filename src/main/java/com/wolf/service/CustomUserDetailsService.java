@@ -4,14 +4,16 @@ import com.wolf.model.Account;
 import com.wolf.model.Auth;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.GrantedAuthorityImpl;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 import sun.misc.BASE64Encoder;
 
 import java.io.UnsupportedEncodingException;
@@ -31,6 +33,7 @@ import java.util.List;
  * 则需要我们继承UserDetailsService
  */
 
+@Service("customUserDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
 
     protected static Logger logger = Logger.getLogger("service");
@@ -67,7 +70,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>();
         for(Auth auth:userAccount.getRole().getAuthList()){
-           authList.add(new GrantedAuthorityImpl(auth.getName()));
+           authList.add(new SimpleGrantedAuthority(auth.getName()));
         }
         return authList;
     }

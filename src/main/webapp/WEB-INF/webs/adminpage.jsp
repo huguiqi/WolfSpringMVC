@@ -9,6 +9,6 @@
     <body>  
         <h1>Admin Page</h1>  
         <p>管理员页面</p>  
-        <a href="/spring3-security-integration/auth/login">退出登录</a>  
+        <a href="/auth/logout">退出登录</a>
     </body>  
     </html>  

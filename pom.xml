@@ -1,58 +1,61 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-    <artifactId>WolfSpringMVC-mybatis</artifactId>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>WolfSpringMVC</artifactId>
     <groupId>com.wolf</groupId>
     <packaging>war</packaging>
     <version>1.0</version>
     <name>WolfSpringMVC Maven Webapp</name>
     <url>http://maven.apache.org</url>
-   <inceptionYear>2011</inceptionYear>
+    <inceptionYear>2011</inceptionYear>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <org.springframework.version>3.0.5.RELEASE</org.springframework.version>
-        <org.springsecurity-version>3.0.5.RELEASE</org.springsecurity-version>
-        <org.slf4j.version>1.6.1</org.slf4j.version>
+        <org.springframework.version>4.3.9.RELEASE</org.springframework.version>
+        <org.springsecurity-version>4.2.3.RELEASE</org.springsecurity-version>
+        <org.slf4j.version>1.7.25</org.slf4j.version>
+        <log4j.version>1.2.17</log4j.version>
+        <mybatis.version>3.4.4</mybatis.version>
+        <jetty.version>3.4.4</jetty.version>
         <project.contextPath>WolfSpringMVC</project.contextPath>
         <webapps_dir>${basedir}/target</webapps_dir>
     </properties>
-    
+
     <distributionManagement>
         <repository>
-            <id>archiva.internal</id>
-            <name>maven2</name>
-            <url>http://repository.sonatype.org/</url>
+            <id>springplugins</id>
+            <name>springplugins</name>
+            <url>http://repo.spring.io/plugins-release/</url>
         </repository>
     </distributionManagement>
 
     <build>
-      <plugins>
-
-          <plugin>
-              <artifactId>maven-antrun-plugin</artifactId>
-              <executions>
-                  <execution>
-                      <id>deploy</id>
-                      <phase>install</phase>
-                      <configuration>
-                          <tasks>
-                              <echo>deploy ${project.contextPath} war</echo>
-                              <copy file="target/${project.contextPath}-mybatis-${project.version}.war"
-                                    tofile="${webapps_dir}/war/coderworld.war"/>
-                              <!--<copy file="target/classes/${jje.module.contextPath}.properties"-->
-                                    <!--tofile="${webapps_dir}/config/${jje.module.contextPath}.properties"/>-->
-                          </tasks>
-                      </configuration>
-                  </execution>
-              </executions>
-          </plugin>
-     <plugin>
-     <groupId>org.mortbay.jetty</groupId>
-     <artifactId>maven-jetty-jspc-plugin</artifactId>
-     <version>6.1.16</version>
-    </plugin>
-          <plugin>
+        <plugins>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.4.6.v20170531</version>
+                <configuration>
+                    <stopPort>9988</stopPort>
+                    <stopKey>foo</stopKey>
+                    <scanIntervalSeconds>5</scanIntervalSeconds>
+                    <connectors>
+                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                            <port>8080</port>
+                            <maxIdleTime>60000</maxIdleTime>
+                        </connector>
+                    </connectors>
+                    <webAppConfig>
+                        <contextPath>/</contextPath>
+                    </webAppConfig>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-jspc-plugin</artifactId>
+                <version>6.1.16</version>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.4.3</version>
@@ -65,53 +68,128 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>3.1</version>
             </plugin>
 
-      </plugins>
-  </build>
-    
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <!-- 元配置文件的目录，相对于pom.xml文件的路径 -->
+                            <directory>src/main/webapp/WEB-INF</directory>
+                            <!-- 是否过滤文件，也就是是否启动auto-config的功能 -->
+                            <filtering>true</filtering>
+                            <!-- 目标路径 -->
+                            <targetPath>WEB-INF</targetPath>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.4.2</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <port>5050</port>
+                    <path>/</path>
+                    <uriEncoding>UTF-8</uriEncoding>
+                    <finalName>mgr</finalName>
+                    <server>tomcat7</server>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
     <repositories>
         <repository>
             <id>alimaven</id>
             <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-        </repository>
-        <repository>
-            <id>archiva.default</id>
-            <url>http://repository.sonatype.org/</url>
+            <releases>
+                <enabled>false</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
         </repository>
 
-		<repository>
-            <id>archiva.3</id>
-            <url>http://www.mvnrepository.com/</url>
-        </repository>
-		<repository>
-            <id>archiva.5</id>
-            <url>http://repository.jboss.com/maven2/</url>
-        </repository>
-        <!--<repository>-->
-            <!--<id>archiva.6</id>-->
-            <!--<url>http://mirrors.ibiblio.org/pub/mirrors/maven2/org/acegisecurity/</url>-->
-        <!--</repository>-->
-        <!--<repository>-->
-            <!--<id>archiva.7</id>-->
-            <!--<url> http://repository.codehaus.org/</url>-->
-        <!--</repository>-->
         <repository>
-           <id>releases</id>
-           <name>Releases</name>
-           <url>https://oss.sonatype.org/content/repositories/releases</url>
-         </repository>
-          <repository>
-           <id>lucene-solr-jenkins-branch_3x</id>
-           <name>Lucene/Solr Jenkins branch_3x</name>
-           <url>https://builds.apache.org/job/Lucene-Solr-Maven-3.x/lastSuccessfulBuild/artifact/maven_artifacts</url>
-           <layout>default</layout>
-           <snapshots>
-             <enabled>true</enabled>
-           </snapshots>
-         </repository>
-        </repositories>
+            <id>releases</id>
+            <name>Releases</name>
+            <url>https://oss.sonatype.org/content/repositories/releases</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring</id>
+            <name>spring</name>
+            <url>http://repo.spring.io/libs-milestone/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>springplugins</id>
+            <name>springplugins</name>
+            <url>http://repo.spring.io/plugins-release/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>atlassian.url</id>
+            <name>atlassian</name>
+            <url>https://maven.atlassian.com/content/repositories/atlassian-public/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>artifacts.url</id>
+            <name>artifacts</name>
+            <url>https://artifacts.alfresco.com/nexus/content/repositories/public/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
 
     <dependencies>
         <!-- commons -->
@@ -146,50 +224,55 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
-            <version>3.0.5.RELEASE</version>
+            <version>${org.springframework.version}</version>
         </dependency>
         <!-- spring+springMVC -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <version>3.0.5.RELEASE</version>
+            <version>${org.springframework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
-            <version>3.0.5.RELEASE</version>
+            <version>${org.springframework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>3.0.5.RELEASE</version>
+            <version>${org.springframework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
-            <version>3.0.5.RELEASE</version>
+            <version>${org.springframework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <version>3.0.5.RELEASE</version>
+            <version>${org.springframework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
-            <version>3.0.5.RELEASE</version>
+            <version>${org.springframework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>3.0.5.RELEASE</version>
+            <version>${org.springframework.version}</version>
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
-            <version>3.0.5.RELEASE</version>
+            <version>${org.springframework.version}</version>
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
@@ -197,17 +280,23 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
-            <version>3.0.5.RELEASE</version>
+            <version>${org.springsecurity-version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-taglibs</artifactId>
-            <version>3.0.5.RELEASE</version>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
-            <version>3.0.5.RELEASE</version>
+            <version>${org.springsecurity-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>${org.springframework.version}</version>
         </dependency>
         <!-- javax -->
         <dependency>
@@ -217,18 +306,17 @@
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
-         <dependency>
+        <dependency>
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>jsp-api</artifactId>
-            <version>2.1</version>
+            <version>2.2</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>2.5</version>
-            <type>jar</type>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
         <!--validation-->
         <dependency>
@@ -238,11 +326,7 @@
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-          <groupId>org.hibernate</groupId>
-          <artifactId>hibernate-validator-annotation-processor</artifactId>
-          <version>4.1.0.Final</version>
-        </dependency>
+
 
         <dependency>
             <groupId>javax.persistence</groupId>
@@ -255,22 +339,21 @@
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.16</version>
+            <version>${log4j.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.6.1</version>
+            <version>${org.slf4j.version}</version>
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.6.1</version>
-            <type>jar</type>
-            <scope>compile</scope>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.8.2</version>
+            <scope>test</scope>
         </dependency>
         <!-- DB -->
         <dependency>
@@ -291,18 +374,12 @@
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
-			<version>3.0.5</version>
+            <version>${mybatis.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
-			<version>1.0.1</version>
-        </dependency>
-        <dependency>
-           <groupId>org.apache.ibatis</groupId>
-           <artifactId>ibatis-sqlmap</artifactId>
-           <version>3.0-beta-9</version>
-           <type>jar</type>
+            <version>1.3.1</version>
         </dependency>
         <!-- other -->
         <dependency>
@@ -327,13 +404,6 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>1.6.10</version>
-            <type>jar</type>
-            <scope>compile</scope>
-        </dependency>
-         <dependency>
             <groupId>net.sf.scannotation</groupId>
             <artifactId>scannotation</artifactId>
             <version>1.0.2</version>
@@ -375,21 +445,6 @@
             <version>1.6.1</version>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>javapns</groupId>-->
-            <!--<artifactId>javapns-jdk16</artifactId>-->
-            <!--<version>2.2</version>-->
-            <!--<type>jar</type>-->
-            <!--<scope>compile</scope>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>bcprov</groupId>-->
-            <!--<artifactId>bcprov-jdk15-146</artifactId>-->
-            <!--<version>1.4.6</version>-->
-            <!--<type>jar</type>-->
-            <!--<scope>compile</scope>-->
-        <!--</dependency>-->
-
         <dependency>
             <groupId>com.googlecode</groupId>
             <artifactId>kryo</artifactId>
@@ -404,11 +459,6 @@
 
 
         <!--passbook requrid -->
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>2.6</version>
-        </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
@@ -434,15 +484,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- pinyin4j -->
-        <!--<dependency>-->
-            <!--<groupId>pinyin4j</groupId>-->
-            <!--<artifactId>pinyin4j</artifactId>-->
-            <!--<version>2.5.0</version>-->
-        <!--</dependency>-->
-
     </dependencies>
 
-     
-    
+
 </project>
