@@ -7,28 +7,24 @@ import java.util.concurrent.CountDownLatch;
  */
 public abstract class BaseBusinessRunnable  implements Runnable {
 
+
     private CountDownLatch countDownLatch;
-
-    private boolean hasWaitRun;
-
-    public abstract Thread.UncaughtExceptionHandler getExceptionHandler();
-
-    public boolean getHasWaitRun() {
-        return hasWaitRun;
-    }
-
-    public void setHasWaitRun(boolean hasWaitRun) {
-        this.hasWaitRun = hasWaitRun;
-    }
+    private String name;
 
     public CountDownLatch getCountDownLatch() {
         return countDownLatch;
     }
 
     public void setCountDownLatch(CountDownLatch countDownLatch) {
-        if (hasWaitRun){
-            this.countDownLatch = countDownLatch;
-        }
+        this.countDownLatch = countDownLatch;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public BaseBusinessRunnable setName(String name) {
+        this.name = name;
+        return this;
+    }
 }

@@ -1,10 +1,8 @@
 package com.wolf.common.thread.handler;
 
-import com.wolf.common.thread.BaseBusinessRunnable;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.StringUtils;
 
-import java.util.concurrent.*;
+import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -14,26 +12,29 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class IMThreadFactory implements ThreadFactory {
 
 
-    private final String NAMEPREFIX;
+    private String name;
 
     private AtomicInteger nextId = new AtomicInteger(1);
 
 
     public IMThreadFactory(String groupThreadName) {
-        this.NAMEPREFIX = "From IMThreadFactory's" + groupThreadName + "-worker-" + nextId;
+        this.name = "From IMThreadFactory's" + groupThreadName + "-worker-" + nextId;
+    }
+
+    public void setName(String groupThreadName){
+        this.name = "From IMThreadFactory's" + groupThreadName + "-worker-" + nextId;
     }
 
 
     @Override
     public Thread newThread(Runnable task) {
-        String taskName = "";
-        String name = NAMEPREFIX + nextId.getAndIncrement() + taskName;
+
+        String name = this.name + nextId.getAndIncrement();
 
         Thread thread = new Thread(null, task, name, 0);
         thread.setDaemon(true);
-        thread.setUncaughtExceptionHandler(businessTask.getExceptionHandler);
+        thread.setUncaughtExceptionHandler(new IMThreadExceptionHandler());
         log.info(thread.getName());
-        System.out.println(thread.getName());
         return thread;
     }
 }

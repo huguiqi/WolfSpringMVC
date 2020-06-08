@@ -1,4 +1,4 @@
-package com.huazhu.im.imadminapi.service.thread;
+package com.wolf.common.thread;
 
 @FunctionalInterface
 public interface IMTaskCallback<P> {

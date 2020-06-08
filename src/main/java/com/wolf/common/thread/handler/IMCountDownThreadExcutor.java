@@ -1,11 +1,11 @@
-package com.huazhu.im.imadminapi.service.thread.handler;
+package com.wolf.common.thread.handler;
 
-import com.huazhu.im.imadminapi.service.thread.BaseBusinessRunnable;
+import com.wolf.common.thread.BaseBusinessRunnable;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;

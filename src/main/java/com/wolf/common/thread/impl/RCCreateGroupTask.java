@@ -28,10 +28,6 @@ public class RCCreateGroupTask extends AbstractThridCreateGroup {
     @Override
     public void run() {
 
-//        this.apiProfiler.beginProfiling("createRcGroup");
-
-//        this.apiProfiler.suspendProfiling("createRcGroup");
-
         log.info("RCCreaterGroupTask----run");
         System.out.println("RCCreaterGroupTask----run");
 
@@ -42,9 +38,9 @@ public class RCCreateGroupTask extends AbstractThridCreateGroup {
             Thread.currentThread().interrupt();
         }
         System.out.println("RCCreaterGroupTask----finish");
-        if (this.getCountDownLatch() != null){
-            this.getCountDownLatch().countDown();
-        }
+//        if (this.getCountDownLatch() != null){
+//            this.getCountDownLatch().countDown();
+//        }
 
 
     }
@@ -64,7 +60,4 @@ public class RCCreateGroupTask extends AbstractThridCreateGroup {
         return true;
     }
 
-    public Thread.UncaughtExceptionHandler getExceptionHandler() {
-        return new IMThread();
-    }
 }

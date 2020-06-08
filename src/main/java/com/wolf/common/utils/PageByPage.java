@@ -1,4 +1,4 @@
-package com.huazhu.im.imadminapi.common;
+package com.wolf.common.utils;
 
 import java.util.ArrayList;
 import java.util.List;

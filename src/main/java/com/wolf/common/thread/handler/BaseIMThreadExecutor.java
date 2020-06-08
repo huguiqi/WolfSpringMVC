@@ -1,8 +1,12 @@
-package com.huazhu.im.imadminapi.service.thread.handler;
+package com.wolf.common.thread.handler;
 
-import com.huazhu.im.imadminapi.service.thread.BaseBusinessRunnable;
 
-import java.util.concurrent.*;
+import com.wolf.common.thread.BaseBusinessRunnable;
+
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public abstract class BaseIMThreadExecutor {
 

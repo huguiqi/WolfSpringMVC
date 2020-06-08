@@ -1,12 +1,11 @@
 package com.wolf.common.thread.handler;
 
-/**
- * Created by sam on 2020/4/23.
- */
-public class IMThreadExceptionHandler implements Thread.UncaughtExceptionHandler {
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
+public class IMThreadExceptionHandler implements Thread.UncaughtExceptionHandler {
     @Override
     public void uncaughtException(Thread t, Throwable e) {
-        System.out.println("uncaughtException" + t.getName());
+        log.error("IMThread exception,threadName:{},threadId:{},error:{}",t.getName(),t.getId(),e);
     }
 }

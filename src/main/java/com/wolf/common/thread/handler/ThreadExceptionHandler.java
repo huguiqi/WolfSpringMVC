@@ -1,4 +1,4 @@
-package com.huazhu.im.imadminapi.service.thread.handler;
+package com.wolf.common.thread.handler;
 
 /**
  * Created by sam on 2020/4/23.
