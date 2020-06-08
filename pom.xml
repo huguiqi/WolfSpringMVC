@@ -11,10 +11,10 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <org.springframework.version>4.3.9.RELEASE</org.springframework.version>
+        <org.springframework.version>4.3.18.RELEASE</org.springframework.version>
         <org.springsecurity-version>4.2.3.RELEASE</org.springsecurity-version>
         <org.slf4j.version>1.7.25</org.slf4j.version>
-        <log4j.version>1.2.17</log4j.version>
+        <log4j.version>1.2.27</log4j.version>
         <mybatis.version>3.4.4</mybatis.version>
         <jetty.version>3.4.4</jetty.version>
         <project.contextPath>WolfSpringMVC</project.contextPath>
@@ -113,83 +113,7 @@
         </plugins>
     </build>
 
-    <repositories>
-        <repository>
-            <id>alimaven</id>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-            <releases>
-                <enabled>false</enabled>
-                <updatePolicy>always</updatePolicy>
-                <checksumPolicy>warn</checksumPolicy>
-            </releases>
-        </repository>
 
-        <repository>
-            <id>releases</id>
-            <name>Releases</name>
-            <url>https://oss.sonatype.org/content/repositories/releases</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>spring</id>
-            <name>spring</name>
-            <url>http://repo.spring.io/libs-milestone/</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>springplugins</id>
-            <name>springplugins</name>
-            <url>http://repo.spring.io/plugins-release/</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>atlassian.url</id>
-            <name>atlassian</name>
-            <url>https://maven.atlassian.com/content/repositories/atlassian-public/</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>artifacts.url</id>
-            <name>artifacts</name>
-            <url>https://artifacts.alfresco.com/nexus/content/repositories/public/</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-    </repositories>
 
     <dependencies>
         <!-- commons -->
@@ -201,7 +125,7 @@
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
-            <version>1.2.2</version>
+            <version>1.3.3</version>
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
@@ -385,21 +309,21 @@
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-core-lgpl</artifactId>
-            <version>1.8.0</version>
+            <version>1.9.13</version>
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.8.0</version>
+            <version>1.9.13</version>
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-lgpl</artifactId>
-            <version>1.8.0</version>
+            <version>1.9.13</version>
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
@@ -475,12 +399,12 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.3.1</version>
+            <version>4.3.6</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpmime</artifactId>
-            <version>4.1.2</version>
+            <version>4.3.6</version>
             <scope>test</scope>
         </dependency>
 
