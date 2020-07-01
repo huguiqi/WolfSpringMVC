@@ -33,7 +33,7 @@ public class WFThreadFactory implements ThreadFactory {
 
         Thread thread = new Thread(null, task, name, 0);
         thread.setDaemon(true);
-        thread.setUncaughtExceptionHandler(new IMThreadExceptionHandler());
+        thread.setUncaughtExceptionHandler(new WFThreadExceptionHandler());
         log.info(thread.getName());
         return thread;
     }

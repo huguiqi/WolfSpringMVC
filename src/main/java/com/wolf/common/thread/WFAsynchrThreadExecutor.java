@@ -1,12 +1,12 @@
 package com.wolf.common.thread;
 
-import com.wolf.common.thread.handler.BaseIMThreadExecutor;
+import com.wolf.common.thread.handler.BaseWFThreadExecutor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ExecutorService;
 
 @Slf4j
-public class WFAsynchrThreadExecutor extends BaseIMThreadExecutor {
+public class WFAsynchrThreadExecutor extends BaseWFThreadExecutor {
 
     private WFAsynchrThreadExecutor() {
         super();

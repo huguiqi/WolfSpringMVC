@@ -14,7 +14,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * Created by sam on 2020/4/21.
  */
 @Slf4j
-public class WFCountDownThreadExcutor extends BaseIMThreadExecutor{
+public class WFCountDownThreadExcutor extends BaseWFThreadExecutor {
 
     private Integer threadSize;
 

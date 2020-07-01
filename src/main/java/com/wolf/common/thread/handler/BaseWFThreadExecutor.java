@@ -8,7 +8,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public abstract class BaseIMThreadExecutor {
+public abstract class BaseWFThreadExecutor {
 
     private static final Integer THREAD_RUN_TIME = 400;
     private static final Integer THREAD_WAIT_TIME = 2000;
