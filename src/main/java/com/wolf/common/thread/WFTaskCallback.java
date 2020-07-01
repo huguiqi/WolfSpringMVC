@@ -1,7 +1,7 @@
 package com.wolf.common.thread;
 
 @FunctionalInterface
-public interface IMTaskCallback<P> {
+public interface WFTaskCallback<P> {
 
     void execute(P p);
 }

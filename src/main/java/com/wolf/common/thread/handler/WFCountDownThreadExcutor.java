@@ -14,7 +14,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * Created by sam on 2020/4/21.
  */
 @Slf4j
-public class IMCountDownThreadExcutor extends BaseIMThreadExecutor{
+public class WFCountDownThreadExcutor extends BaseIMThreadExecutor{
 
     private Integer threadSize;
 
@@ -29,13 +29,13 @@ public class IMCountDownThreadExcutor extends BaseIMThreadExecutor{
     private AtomicInteger taskSize = new AtomicInteger(0);
 
 
-    public IMCountDownThreadExcutor(String name) {
+    public WFCountDownThreadExcutor(String name) {
         this.lock = new ReentrantLock();
         threadFactory.setName(name);
         POOL_EXECUTOR.allowCoreThreadTimeOut(true);
     }
 
-    public IMCountDownThreadExcutor(String name, boolean hasWaitFinish) {
+    public WFCountDownThreadExcutor(String name, boolean hasWaitFinish) {
         this.lock = new ReentrantLock();
         threadFactory.setName(name);
         this.hasWaitFinish = hasWaitFinish;

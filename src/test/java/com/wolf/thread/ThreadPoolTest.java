@@ -8,7 +8,7 @@ package com.wolf.thread;
 
 import com.wolf.common.thread.BaseBusinessRunnable;
 import com.wolf.common.thread.IMAsynchrThreadExecutor;
-import com.wolf.common.thread.impl.IMGroupSaveDBTask;
+import com.wolf.common.thread.impl.GroupSaveDBTask;
 import com.wolf.common.thread.impl.NCCreaterGroupTask;
 import com.wolf.common.thread.impl.RCCreateGroupTask;
 import com.wolf.common.utils.PageByPage;
@@ -50,7 +50,7 @@ public class ThreadPoolTest {
         }
 
 
-        IMGroupSaveDBTask groupSaveDBTask = new IMGroupSaveDBTask();
+        GroupSaveDBTask groupSaveDBTask = new GroupSaveDBTask();
 //        groupSaveDBTask.setHasWaitRun(false);
         if (groupSaveDBTask.hasCreateGroup()) {
             groupSaveDBTask.valid();

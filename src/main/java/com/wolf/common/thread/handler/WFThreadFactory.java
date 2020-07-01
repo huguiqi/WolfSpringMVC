@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Created by sam on 2020/4/23.
  */
 @Slf4j
-public class IMThreadFactory implements ThreadFactory {
+public class WFThreadFactory implements ThreadFactory {
 
 
     private String name;
@@ -17,7 +17,7 @@ public class IMThreadFactory implements ThreadFactory {
     private AtomicInteger nextId = new AtomicInteger(1);
 
 
-    public IMThreadFactory(String groupThreadName) {
+    public WFThreadFactory(String groupThreadName) {
         this.name = "From IMThreadFactory's" + groupThreadName + "-worker-" + nextId;
     }
 

@@ -1,13 +1,13 @@
 package com.wolf.common.thread.impl;
 
-import com.wolf.common.thread.handler.IMSaveGroupExceptionHandler;
+import com.wolf.common.thread.handler.WFSaveGroupExceptionHandler;
 import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by sam on 2020/4/23.
  */
 @Slf4j
-public class IMGroupSaveDBTask  extends AbstractIMLocalDBGroupTask{
+public class GroupSaveDBTask extends AbstractLocalDBGroupTask {
 
     public boolean hasCreateGroup() {
         return true;
@@ -34,6 +34,6 @@ public class IMGroupSaveDBTask  extends AbstractIMLocalDBGroupTask{
     }
 
     public Thread.UncaughtExceptionHandler getExceptionHandler() {
-        return new IMSaveGroupExceptionHandler();
+        return new WFSaveGroupExceptionHandler();
     }
 }
