@@ -6,9 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.concurrent.ExecutorService;
 
 @Slf4j
-public class IMAsynchrThreadExecutor extends BaseIMThreadExecutor {
+public class WFAsynchrThreadExecutor extends BaseIMThreadExecutor {
 
-    private IMAsynchrThreadExecutor() {
+    private WFAsynchrThreadExecutor() {
         super();
         POOL_EXECUTOR.allowCoreThreadTimeOut(true);
         //初如化所有核心线程
@@ -17,10 +17,10 @@ public class IMAsynchrThreadExecutor extends BaseIMThreadExecutor {
     }
 
     private static class SingleHolder {
-        private static IMAsynchrThreadExecutor instance = new IMAsynchrThreadExecutor();
+        private static WFAsynchrThreadExecutor instance = new WFAsynchrThreadExecutor();
     }
 
-    public static IMAsynchrThreadExecutor getInstance() {
+    public static WFAsynchrThreadExecutor getInstance() {
         return SingleHolder.instance;
     }
 

@@ -7,7 +7,7 @@ package com.wolf.thread;
 
 
 import com.wolf.common.thread.BaseBusinessRunnable;
-import com.wolf.common.thread.IMAsynchrThreadExecutor;
+import com.wolf.common.thread.WFAsynchrThreadExecutor;
 import com.wolf.common.thread.impl.GroupSaveDBTask;
 import com.wolf.common.thread.impl.NCCreaterGroupTask;
 import com.wolf.common.thread.impl.RCCreateGroupTask;
@@ -32,7 +32,7 @@ public class ThreadPoolTest {
     public void postGroupTest() throws InterruptedException {
 
         long start = System.currentTimeMillis();
-        IMAsynchrThreadExecutor executor = IMAsynchrThreadExecutor.getInstance();
+        WFAsynchrThreadExecutor executor = WFAsynchrThreadExecutor.getInstance();
         //初始化
         RCCreateGroupTask rcCreateGroupTask = new RCCreateGroupTask();
 //        rcCreateGroupTask.setHasWaitRun(true);
@@ -113,7 +113,7 @@ public class ThreadPoolTest {
     @Test
     public void testExecutorService() {
 
-        IMAsynchrThreadExecutor executor = IMAsynchrThreadExecutor.getInstance();
+        WFAsynchrThreadExecutor executor = WFAsynchrThreadExecutor.getInstance();
 
         List<String> employeeIds = new ArrayList<>();
         int i = 0;
@@ -140,7 +140,7 @@ public class ThreadPoolTest {
         executor.getPool().shutdown();
 
         while (true) {
-            IMAsynchrThreadExecutor executor1 = IMAsynchrThreadExecutor.getInstance();
+            WFAsynchrThreadExecutor executor1 = WFAsynchrThreadExecutor.getInstance();
             if (executor1.getPool().isTerminated()) {
                 long end = System.currentTimeMillis();
                 System.out.println("需要时间:" + (end - start));
