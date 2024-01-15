@@ -10,11 +10,13 @@
     <inceptionYear>2011</inceptionYear>
 
     <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <org.springframework.version>5.2.6.RELEASE</org.springframework.version>
         <org.springsecurity-version>5.2.6.RELEASE</org.springsecurity-version>
         <org.slf4j.version>1.7.25</org.slf4j.version>
-        <log4j.version>1.2.27</log4j.version>
+        <log4j.version>1.2.12</log4j.version>
         <mybatis.version>3.4.4</mybatis.version>
         <jetty.version>3.4.4</jetty.version>
         <project.contextPath>WolfSpringMVC</project.contextPath>
@@ -69,6 +71,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
             </plugin>
 
             <plugin>
@@ -243,14 +249,19 @@
             <scope>provided</scope>
         </dependency>
         <!--validation-->
+<!--        <dependency>-->
+<!--            <groupId>javax.validation</groupId>-->
+<!--            <artifactId>validation-api</artifactId>-->
+<!--            <version>1.0.0.GA</version>-->
+<!--            <type>jar</type>-->
+<!--            <scope>compile</scope>-->
+<!--        </dependency>-->
+
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
-            <version>1.0.0.GA</version>
-            <type>jar</type>
-            <scope>compile</scope>
+            <version>2.0.1.Final</version>
         </dependency>
-
 
         <dependency>
             <groupId>javax.persistence</groupId>

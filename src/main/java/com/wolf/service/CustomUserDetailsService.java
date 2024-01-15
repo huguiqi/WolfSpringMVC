@@ -1,18 +1,22 @@
 package com.wolf.service;
 
+import com.wolf.bean.WFMd5PasswordEncoder;
 import com.wolf.model.Account;
 import com.wolf.model.Auth;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.dao.DataAccessException;
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
+import org.springframework.security.crypto.password.MessageDigestPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import sun.misc.BASE64Encoder;
 
@@ -41,8 +45,10 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private LoginUserService loginUserService;
 
+
     @Autowired
-    private Md5PasswordEncoder passwordEncoder;
+    private DelegatingPasswordEncoder passwordEncoder;
+
 
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException, DataAccessException {
         UserDetails user = null;
@@ -91,8 +97,17 @@ public class CustomUserDetailsService implements UserDetailsService {
 	return newstr;
 	}
 
-    private String getMd5EncodePassword(String password){
-        String result = passwordEncoder.encodePassword(password, null);
+    private String getMd5EncodePassword(String password) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        String result = passwordEncoder.encode(password);
         return result;
+    }
+
+
+
+    @Bean
+    public DelegatingPasswordEncoder passwordEncoder(){
+        DelegatingPasswordEncoder passwordEncoder = (DelegatingPasswordEncoder)PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        passwordEncoder.setDefaultPasswordEncoderForMatches(new MessageDigestPasswordEncoder("MD5"));
+        return passwordEncoder;
     }
 }

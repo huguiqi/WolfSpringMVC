@@ -35,6 +35,6 @@
     -->
     <bean id="customUserDetailsService" class="com.wolf.service.CustomUserDetailsService"/>
     <!-- 对密码进行MD5编码 -->
-    <bean class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" id="passwordEncoder"/>
+<!--    <bean class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" id="passwordEncoder"/>-->
 
 </beans>

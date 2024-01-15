@@ -11,9 +11,9 @@
 	<!-- 配置c3p0数据源 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/studentdb" />
+		<property name="jdbcUrl" value="jdbc:mysql://192.168.1.199:3306/studentdb" />
 		<property name="user" value="root" />
-		<property name="password" value="huguiqi" />
+		<property name="password" value="zaxh123456" />
 
 		<property name="acquireIncrement" value="3" />
 		<property name="initialPoolSize" value="3" />

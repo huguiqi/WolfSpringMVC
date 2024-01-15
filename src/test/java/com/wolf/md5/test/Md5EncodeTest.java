@@ -1,21 +1,22 @@
 package com.wolf.md5.test;
 
 
+import com.wolf.bean.WFMd5PasswordEncoder;
 import org.junit.Test;
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class Md5EncodeTest {
 
 
     @Test
     public  void testMd5Encode(){
-        System.out.println("----" + getMd5EncodePassword("123456") + "----");
+        PasswordEncoder passwordEncoder = new WFMd5PasswordEncoder();
+        System.out.println("----" + passwordEncoder.encode("123456") + "----");
     }
 
-    private String getMd5EncodePassword(String password){
-        Md5PasswordEncoder md5PasswordEncoder = new Md5PasswordEncoder();
-        //md5PasswordEncoder.setEncodeHashAsBase64(true);
-        String result = md5PasswordEncoder.encodePassword(password, "base64");
-        return result;
-    }
+
 }
