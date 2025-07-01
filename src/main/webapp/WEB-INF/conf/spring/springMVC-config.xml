@@ -29,7 +29,17 @@
 	<!-- 这个tag是方便重定向路径 -->
 	<mvc:resources location="/media/**" mapping="/media/"/>
 	<!-- json支持,依赖jackson-core-lgpl.jar、jackson-mapper-asl.jar、jackson-mapper-lgpl.jar -->
-	<!--<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"></bean>-->
+	<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		<property name="objectMapper">
+			<bean class="com.fasterxml.jackson.databind.ObjectMapper">
+				<property name="dateFormat">
+					<bean class="java.text.SimpleDateFormat">
+						<constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss" />
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
 	<!--<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"></bean>-->
 	<!-- file上传，依赖commons-fileupload.jar -->
 	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>

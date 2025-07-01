@@ -16,3 +16,4 @@ ava.lang.IllegalArgumentException: There is no PasswordEncoder mapped for the id
 https://blog.csdn.net/qyb19970829/article/details/110006513
 
 
+https://info.michael-simons.eu/2018/01/13/spring-security-5-new-password-storage-format/
